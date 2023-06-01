@@ -22,6 +22,26 @@
                 <!--end:Menu link-->
             </div>
             <!--end:Menu item-->
+            @if (auth()->user()->level == 'user')
+             <!--begin:Menu item-->
+             <div class="menu-item here">
+                <!--begin:Menu link-->
+                <span class="menu-link">
+                    <span class="menu-icon">
+                        <i class="ki-duotone ki-element-11 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                            <span class="path3"></span>
+                            <span class="path4"></span>
+                        </i>
+                    </span>
+                    <span class="menu-title"><a href="{{ route('user') }}">POS</a></span>
+                    {{-- <span class="menu-arrow"></span> --}}
+                </span>
+                <!--end:Menu link-->
+            </div>
+            @endif
+            <!--end:Menu item-->
          
             <!--begin:Menu item-->
             <div class="menu-item pt-5">
@@ -32,6 +52,7 @@
                 <!--end:Menu content-->
             </div>
             <!--end:Menu item-->
+            @if (auth()->user()->level == 'admin')
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!--begin:Menu link-->
@@ -1164,6 +1185,7 @@
                 <!--end:Menu link-->
             </div>
             <!--end:Menu item-->
+            @endif
         </div>
         <!--end::Menu-->
     </div>

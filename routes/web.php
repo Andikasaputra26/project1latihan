@@ -58,9 +58,11 @@ Route::middleware('auth')->group(function () {
         Route::get('hapus/{id}', 'hapus')->name('kategori.hapus');
     });
 
-    Route::controller(UserController::class)->prefix('user')->group(function () {
-        Route::get('', 'index')->name('user');
-    });
+    // Route::controller(UserController::class)->prefix('user')->group(function () {
+    //     Route::get('', 'index')->name('user');
+    // });
+
+    Route::resource('user', UserController::class);
 });
 
 // Auth::routes();

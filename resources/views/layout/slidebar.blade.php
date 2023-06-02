@@ -35,7 +35,7 @@
                             <span class="path4"></span>
                         </i>
                     </span>
-                    <span class="menu-title"><a href="{{ route('user') }}">POS</a></span>
+                    <span class="menu-title"><a href="{{ route('user.index') }}">POS</a></span>
                     {{-- <span class="menu-arrow"></span> --}}
                 </span>
                 <!--end:Menu link-->

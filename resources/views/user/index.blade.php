@@ -67,15 +67,20 @@
                                                 <!--begin::Icon-->
                                                 <div class="nav-icon mb-3">
                                                     <!--begin::Food icon-->
-                                                    <img src="assets/media/svg/food-icons/spaghetti.svg" class="w-50px" alt="" />
+                                                    {{-- <img src="dist/assets/media/svg/food-icons/spaghetti.svg" class="w-50px" alt="" /> --}}
+                                                    <img src="dist\assets\media\svg\brand-logos\adidas-9.svg" class="w-50px" alt="" />
                                                     <!--end::Food icon-->
                                                 </div>
                                                 <!--end::Icon-->
                                                 <!--begin::Info-->
+                                                @foreach ($kategori as $key => $category)
                                                 <div class="">
-                                                    <span class="text-gray-800 fw-bold fs-2 d-block">Lunch</span>
-                                                    <span class="text-gray-400 fw-semibold fs-7">8 Options</span>
+                                                    <span class="text-gray-800 fw-bold fs-2 d-block">{{ $category->name_category }}</span>
+                                                @endforeach
+                                                @foreach ($product as $key => $row)
+                                                    <span class="text-gray-400 fw-semibold fs-7">{{ $row->stock }} Stock</span>
                                                 </div>
+                                                @endforeach
                                                 <!--end::Info-->
                                             </a>
                                             <!--end::Nav link-->
@@ -177,22 +182,24 @@
                                                 <div class="card card-flush flex-row-fluid p-6 pb-5 mw-100">
                                                     <!--begin::Body-->
                                                     <div class="card-body text-center">
-                                                        <!--begin::Food img-->
-                                                        <img src="assets/media/stock/food/img-2.jpg" class="rounded-3 mb-4 w-150px h-150px w-xxl-200px h-xxl-200px" alt="" />
+                                                        @foreach ($product as $row)
+                                                            <!--begin::Food img-->
+                                                        <img src="{{ asset('dist/assets/media/product/'.$row->img) }}" class="rounded-3 mb-4 w-150px h-150px w-xxl-200px h-xxl-200px" alt="" />
                                                         <!--end::Food img-->
                                                         <!--begin::Info-->
                                                         <div class="mb-2">
                                                             <!--begin::Title-->
                                                             <div class="text-center">
-                                                                <span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-3 fs-xl-1">T-Bone Stake</span>
-                                                                <span class="text-gray-400 fw-semibold d-block fs-6 mt-n1">16 mins to cook</span>
+                                                                <span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-3 fs-xl-1">{{ $row->name_product }}</span>
+                                                                <span class="text-gray-400 fw-semibold d-block fs-6 mt-n1">{{ strip_tags($row->description) }}</span>
                                                             </div>
                                                             <!--end::Title-->
                                                         </div>
                                                         <!--end::Info-->
                                                         <!--begin::Total-->
-                                                        <span class="text-success text-end fw-bold fs-1">$16.50$</span>
+                                                        <span class="text-success text-end fw-bold fs-1">Rp. {{ $row->price }}</span>
                                                         <!--end::Total-->
+                                                        @endforeach
                                                     </div>
                                                     <!--end::Body-->
                                                 </div>

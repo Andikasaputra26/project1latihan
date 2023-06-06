@@ -3,28 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\KategoriProduct;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
-class PosController extends Controller
+class ProductController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        $product = Product::get();
-        return view('pos.index', ['pos' => $product]);
+        $product = Product::all();
+        return view('pos.index', compact('product'));
     }
 
-    public function tambah()
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
     {
         $kategori = KategoriProduct::get();
-        return view('pos.create', ['kategori' => $kategori]);
+        return view('pos.create', compact('kategori'));
     }
 
-    public function simpan(Request $request)
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name_product' => 'required',
             'description' => 'required',
@@ -53,41 +61,24 @@ class PosController extends Controller
         $product->img = $nama_gambar;
         $product->save();
 
-        return redirect()->route('pos');
+        return redirect()->route('pos.index');
     }
 
-    public function edit($id)
+    /**
+     * Display the specified resource.
+     */
+    public function edit(string $id)
     {
         $product = Product::find($id);
         $kategori = KategoriProduct::get();
         return view('pos.edit', ['pos' => $product, 'kategori' => $kategori]);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
     {
-        // $product = Product::find($id);
-        // $product->name_product = $request->name_product;
-        // $product->description = $request->description;
-        // $product->stock = $request->stock;
-        // $product->price = $request->price;
-        // $product->id_kategori = $request->id_kategori;
-
-        // if ($request->hasFile('img')) {
-        //     $destination = 'dist/assets/media/product' . $product->img;
-        //     if (File::exists($destination)) {
-        //         File::delete($destination);
-        //     }
-
-        //     $file = $request->file('img');
-        //     $extention = $file->getClientOriginalExtension();
-        //     $filename = time() . '.' . $extention;
-        //     $file->move('dist/assets/media/product', $filename);
-        //     $product->img = $filename;
-        // }
-
-        // $product->update();
-        // return redirect()->route('pos');
-
         $product = Product::find($id);
         $product->name_product = $request->input('name_product');
         $product->description = $request->input('description');
@@ -107,12 +98,15 @@ class PosController extends Controller
             $product->img = $filename;
         }
         $product->update();
-        return redirect()->route('pos');
+        return redirect()->route('pos.index');
     }
 
-    public function hapus($id)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
     {
         Product::find($id)->delete();
-        return redirect()->route('pos');
+        return redirect()->route('pos.index');
     }
 }

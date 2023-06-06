@@ -158,7 +158,7 @@
 											<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 												
 												<!--begin::Add product-->
-												<a href="{{ route('pos.tambah') }}" class="btn btn-primary">Add Product</a>
+												<a href="{{ route('pos.create') }}" class="btn btn-primary">Add Product</a>
 												<!--end::Add product-->
 											</div>
 											<!--end::Card toolbar-->
@@ -179,7 +179,7 @@
 													</tr>
 												</thead>
 												<tbody class="fw-semibold text-gray-600">
-													@foreach ($pos as $row)
+													@foreach ($product as $row)
 														<tr>
 															<td>
 																<div class="d-flex align-items-center">
@@ -218,10 +218,16 @@
 																	<div class="menu-item px-3">
 																		<a href="{{ route('pos.edit',$row->id) }}" class="menu-link px-3">Edit</a>
 																	</div>
+																	
 																	<!--end::Menu item-->
 																	<!--begin::Menu item-->
 																	<div class="menu-item px-3">
-																		<a href="{{ route('pos.hapus',$row->id) }}" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row">Delete</a>
+																		{{-- <a href="{{ route('pos.destroy', $row->id) }}" class="menu-link px-3" data-kt-ecommerce-product-filter="delete_row">Delete</a> --}}
+																		<form action="{{ route('pos.destroy',$row->id) }}" method="POST" class="d-inline">
+																			@method('delete')
+																			@csrf
+																			<button type="submit"class="btn menu-link px-3" data-kt-ecommerce-product-filter="delete_row">Hapus</button>
+																		</form>
 																	</div>
 																	<!--end::Menu item-->
 																</div>

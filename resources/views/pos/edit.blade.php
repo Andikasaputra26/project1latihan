@@ -12,7 +12,7 @@
 					<!--begin::Page title-->
 					<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
 						<!--begin::Title-->
-						<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">{{ isset($kategori) ?'Form Edit Product' : 'Form Tambah Product' }}</h1>
+						<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Form Tambah Product</h1>
 						<!--end::Title-->
 						<!--begin::Breadcrumb-->
 						<ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -146,8 +146,9 @@
 				<!--begin::Content container-->
 				<div id="kt_app_content_container" class="app-container container-xxl">
 					<!--begin::Form-->
-					<form class="form d-flex flex-column flex-lg-row" action="{{ isset($product) ? route('pos.tambah.update',$product->id): route('pos.tambah.simpan') }}" method="post" enctype="multipart/form-data">
+					<form class="form d-flex flex-column flex-lg-row" action="/pos/{{ $pos->id }}" method="post" enctype="multipart/form-data">
 						@csrf
+						@method('patch')
 						<!--begin::Main column-->
 						<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
 							<!--begin:::Tabs-->
@@ -159,7 +160,6 @@
 							</ul>
 							<!--end:::Tabs-->
 							<!--begin::Tab content-->
-							{{-- <form action="{{ isset($product) ? route('pos.tambah.update',$product->id): route('pos.tambah.simpan') }}" method="post" enctype="multipart/form-data"> --}}
 								<div class="tab-content">
 									<!--begin::Tab pane-->
 									<div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
@@ -182,7 +182,7 @@
 														<label class="required form-label">Product Name</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="text" name="name_product" class="form-control mb-2" placeholder="Product name" value="{{ isset($pos) ? $pos->name_product : '' }}" />
+														<input type="text" name="name_product" class="form-control mb-2" placeholder="Product name" value="{{ $pos->name_product }}" />
 														<!--end::Input-->
 														<!--begin::Description-->
 														<div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
@@ -195,7 +195,7 @@
 														<label class="form-label">Description</label>
 														<!--end::Label-->
 														<!--begin::Editor-->
-														<textarea name="description" class="form-control mb-2"  id="description" cols="30" rows="10" value="{{ isset($pos) ? $pos->description : '' }}"></textarea>
+														<textarea name="description" class="form-control mb-2"  id="description" cols="30" rows="10">{{ $pos->description }}</textarea>
 														{{-- <div id="kt_ecommerce_add_product_description" name="kt_ecommerce_add_product_description" class="min-h-200px mb-2"></div> --}}
 														<!--end::Editor-->
 														<!--begin::Description-->
@@ -223,7 +223,7 @@
 														<label class="required form-label">Product Stock</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="text" name="stock" class="form-control mb-2" placeholder="Product stock" value="{{ isset($pos) ? $pos->stock : '' }}" />
+														<input type="text" name="stock" class="form-control mb-2" placeholder="Product stock" value="{{ $pos->stock }}" />
 														<!--end::Input-->
 														<!--begin::Description-->
 														<div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
@@ -255,6 +255,7 @@
 															<option value="" selected disabled hidden>-- Pilih Kategori --</option>
 															@foreach ($kategori as $row)
 																<option value="{{ $row->id }}" {{ isset($pos) ? ($pos->id_kategori = $row->id ? 'selected' : '' ): ''}} >{{ $row->name_category }}</option>
+                                                                {{-- <option value="{{ $row->id }}" {{ $kategori->id == $kategori->id ? 'selected' : '' }}>{{ $kategori->name_category }}</option> --}}
 															@endforeach
 														</select>
 														<!--end::Input-->
@@ -285,7 +286,7 @@
 														<label class="required form-label">Base Price</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="text" name="price" class="form-control mb-2" placeholder="Product stock" value="{{ isset($pos) ? $pos->price : '' }}" />
+														<input type="text" name="price" class="form-control mb-2" placeholder="Product Price" value="{{ $pos->stock }}" />
 														<!--end::Input-->
 														<!--begin::Description-->
 														<div class="text-muted fs-7">Set the product Price.</div>
@@ -320,7 +321,7 @@
 														<label class="form-label">Fixed Discounted Price</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="text" name="dicsounted_price" class="form-control mb-2" placeholder="Discounted price" value="{{ isset($pos) ? $pos->price : '' }}" />
+														<input type="text" name="dicsounted_price" class="form-control mb-2" placeholder="Discounted price"/>
 														<!--end::Input-->
 														<!--begin::Description-->
 														<div class="text-muted fs-7">Set the discounted product price. The product will be reduced at the determined fixed price</div>
@@ -351,7 +352,7 @@
 														<label class="required form-label">Product Image</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="file" name="img" class="form-control mb-2" placeholder="Product Image" value="{{ isset($pos) ? $pos->img : '' }}" />
+														<input type="file" name="img" class="form-control mb-2" placeholder="Product Image" value="{{ $pos->img }}"/>
 														<!--end::Input-->
 														<!--begin::Description-->
 														<div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
@@ -369,7 +370,7 @@
 							<!--end::Tab content-->
 							<div class="d-flex justify-content-end">
 								<!--begin::Button-->
-								<a href="{{ route('pos') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+								<a href="{{ route('pos.index') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
 								<button type="submit" class="btn btn-primary">Simpan</button>								</button>
 								<!--end::Button-->
 							</div>

@@ -77,10 +77,7 @@
                                                 <div class="">
                                                     <span class="text-gray-800 fw-bold fs-2 d-block">{{ $category->name_category }}</span>
                                                 @endforeach
-                                                @foreach ($product as $key => $row)
-                                                    <span class="text-gray-400 fw-semibold fs-7">{{ $row->stock }} Stock</span>
-                                                </div>
-                                                @endforeach
+                                               
                                                 <!--end::Info-->
                                             </a>
                                             <!--end::Nav link-->

@@ -59,27 +59,26 @@
                                 <!--begin::Body-->
                                 <div class="card-body">
                                     <!--begin::Nav-->
-                                    <ul class="nav nav-pills d-flex justify-content-between nav-pills-custom gap-3 mb-6">
+                                    <ul class="nav nav-pills d-flex justify-content-between nav-pills-custom gap-3 mb-8">
                                         <!--begin::Item-->
                                         <li class="nav-item mb-3 me-0">
                                             <!--begin::Nav link-->
-                                            <a class="nav-link nav-link-border-solid btn btn-outline btn-flex btn-active-color-primary flex-column flex-stack pt-9 pb-7 page-bg show active" data-bs-toggle="pill" href="#kt_pos_food_content_1" style="width: 138px;height: 180px">
+                                            @foreach ($kategori as $key => $category)
+                                            <a class="nav-link nav-link-border-solid btn btn-outline btn-flex btn-active-color-primary flex-column flex-stack pt-9 pb-7 page-bg show" data-bs-toggle="pill" href="#kt_pos_food_content_1" style="width: 138px;height: 180px">
                                                 <!--begin::Icon-->
                                                 <div class="nav-icon mb-3">
                                                     <!--begin::Food icon-->
-                                                    {{-- <img src="dist/assets/media/svg/food-icons/spaghetti.svg" class="w-50px" alt="" /> --}}
                                                     <img src="dist\assets\media\svg\brand-logos\adidas-9.svg" class="w-50px" alt="" />
                                                     <!--end::Food icon-->
                                                 </div>
                                                 <!--end::Icon-->
                                                 <!--begin::Info-->
-                                                @foreach ($kategori as $key => $category)
                                                 <div class="">
-                                                    <span class="text-gray-800 fw-bold fs-2 d-block">{{ $category->name_category }}</span>
-                                                @endforeach
-                                               
+                                                        <span class="text-gray-800 fw-bold fs-2 d-block">{{ $category->name_category }}</span>
+                                                </div>
                                                 <!--end::Info-->
                                             </a>
+                                            @endforeach
                                             <!--end::Nav link-->
                                         </li>
                                         <!--end::Item-->
@@ -176,10 +175,11 @@
                                             <!--begin::Wrapper-->
                                             <div class="d-flex flex-wrap d-grid gap-5 gap-xxl-9">
                                                 <!--begin::Card-->
+                                                @foreach ($product as $row)
                                                 <div class="card card-flush flex-row-fluid p-6 pb-5 mw-100">
                                                     <!--begin::Body-->
                                                     <div class="card-body text-center">
-                                                        @foreach ($product as $row)
+                                                        
                                                             <!--begin::Food img-->
                                                         <img src="{{ asset('dist/assets/media/product/'.$row->img) }}" class="rounded-3 mb-4 w-150px h-150px w-xxl-200px h-xxl-200px" alt="" />
                                                         <!--end::Food img-->
@@ -188,7 +188,7 @@
                                                             <!--begin::Title-->
                                                             <div class="text-center">
                                                                 <span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-3 fs-xl-1">{{ $row->name_product }}</span>
-                                                                <span class="text-gray-400 fw-semibold d-block fs-6 mt-n1">{{ strip_tags($row->description) }}</span>
+                                                                <span class="text-gray-400 fw-semibold d-block fs-6 mt-n1">{{ ($row->stock) }} Stock</span>
                                                             </div>
                                                             <!--end::Title-->
                                                         </div>
@@ -196,10 +196,11 @@
                                                         <!--begin::Total-->
                                                         <span class="text-success text-end fw-bold fs-1">Rp. {{ $row->price }}</span>
                                                         <!--end::Total-->
-                                                        @endforeach
+                                                        
                                                     </div>
                                                     <!--end::Body-->
                                                 </div>
+                                                @endforeach 
                                                 <!--end::Card-->
                                                 <!--begin::Card-->
                                                 <div class="card card-flush flex-row-fluid p-6 pb-5 mw-100">

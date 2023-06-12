@@ -197,11 +197,14 @@
                                                             <!--end::Total-->
                                                         </div>
                                                             <div class="text-center">
-                                                                {{-- <input type="hidden" name="id" id="id_user" value="{{ $id_user }}"> --}}
-                                                                <input type="hidden" name="id" id="id_product">
-                                                                {{-- <input type="submit" class="btn btn-primary text-300 mt-3" value="Add to cart"> --}}
-                                                                {{-- <button id="add-to-cart-btn" class="btn btn-primary" data-product-id="{{ $row->id }}" data-product-name="{{ $row->name_product }}" data-product-img="{{ $row->img }}">Add to Cart</button> --}}
-                                                                <a href="{{ route('pembelian.index',$row->id) }}" class="btn btn-primary">Add To Cart</a>
+                                                                {{-- <form action="{{ route('pembelian.index',$row->id) }}" method="post">
+                                                                    @csrf --}}
+                                                                    {{-- <input type="submit" class="btn btn-primary text-300 mt-3" value="Add to Cart"> --}}
+                                                                    <input type="hidden" name="id" value="{{ $row->id }}">
+                                                                    {{-- <button type="submit" class="btn btn-primary">Add To Cart</button> --}}
+                                                                    <button id="addtocart" class="btn btn-primary">Add To Cart</button>
+                                                                    {{-- <a href="{{ route('pembelian.index',$row->id) }}" class="btn btn-primary">Add To Cart</a> --}}
+                                                                {{-- </form> --}}
                                                             </div>
                                                             <!--end::Body-->
                                                     </div>
@@ -1341,7 +1344,7 @@
                                             <!--end::Table head-->
                                             <!--begin::Table body-->
                                             <tbody>
-                                                {{-- @foreach ($product as $a)
+                                                {{-- @foreach ($data as $a)
                                                 <tr data-kt-pos-element="item" data-kt-pos-item-price="33">
                                                     <td class="pe-0">
                                                         <div class="d-flex align-items-center">
@@ -1373,9 +1376,9 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach --}}
-                                                {{-- <div id="cart-items">
+                                                <div id="cart-items">
 
-                                                </div> --}}
+                                                </div>
                                                 
                                                 <tr data-kt-pos-element="item" data-kt-pos-item-price="7.5">
                                                     <td class="pe-0">
@@ -1506,11 +1509,12 @@
         <!--end::Footer-->
     </div>
     <!--end:::Main-->
+
 @endsection
-{{-- <script>
+<script>
     document.addEventListener('DOMContentLoaded', function() {
         // Temukan semua tombol "Add to Cart"
-        var addToCartButtons = document.querySelectorAll('#add-to-cart-btn');
+        var addToCartButtons = document.querySelectorAll('#addtocart');
 
         // Loop melalui setiap tombol dan tambahkan event listener
         addToCartButtons.forEach(function(button) {
@@ -1525,4 +1529,4 @@
         });
         });
     });
-</script> --}}
+</script>

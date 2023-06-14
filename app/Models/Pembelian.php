@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use App\Http\Controllers\ProductController;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pembelian extends Model
 {
     use HasFactory;
     protected $table = 'pembelian';
-    protected $fillable = ['product_id', 'total_item', 'total_harga', 'bayar'];
+    protected $fillable = ['total_harga', 'metode_bayar'];
 
-    public function Produk()
+    public function PembelianItem(): HasMany
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->hasMany(PembelianItem::class, 'id', 'id_pembelian');
     }
 }

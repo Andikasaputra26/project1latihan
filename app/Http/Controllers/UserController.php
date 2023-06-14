@@ -2,17 +2,39 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\KategoriProduct;
-use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $product = Product::all();
-        $kategori = KategoriProduct::all();
-        // return view('user.index', ['user' => $product]);
-        return view('user.index', compact('product', 'kategori'));
+        $account = User::all();
+        return view('user.index', compact('account'));
+    }
+
+    public function tambah()
+    {
+        return view('user.create');
+    }
+
+    public function simpan(Request $request)
+    {
+        Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required | email',
+            'password' => 'required|confirmed'
+        ])->validate();
+
+        User::crete([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'level' => 'admin', 'kasir'
+        ]);
+
+        return redirect()->route('user');
     }
 }

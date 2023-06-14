@@ -144,6 +144,7 @@ License: For each use you must have a valid license purchased only from above li
 		<script src="{{ url('dist/assets/js/custom/utilities/modals/create-app.js') }}"></script>
 		<script src="{{ url('dist/assets/js/custom/utilities/modals/new-target.js') }}"></script>
 		<script src="{{ url('dist/assets/js/custom/utilities/modals/users-search.js') }}"></script>
+		<script src="{{ url('dist/assets/js/custom/pages/general/pos.js') }}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

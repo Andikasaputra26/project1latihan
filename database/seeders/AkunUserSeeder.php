@@ -22,10 +22,10 @@ class AkunUserSeeder extends Seeder
             ],
 
             [
-                'name' => 'User',
-                'email' => 'user@gmail.com',
-                'level' => 'user',
-                'password' => bcrypt('User123@')
+                'name' => 'Kasir',
+                'email' => 'kasir@gmail.com',
+                'level' => 'kasir',
+                'password' => bcrypt('kasir123@')
             ],
         ];
 

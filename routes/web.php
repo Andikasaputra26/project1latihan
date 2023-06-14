@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PosController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PembelianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,12 +23,8 @@ Route::get('/', function () {
 });
 
 Route::controller(AuthController::class)->group(function () {
-    // Route::get('register','register')->name('register');
-    // Route::post('register','registerSimpan')->name('register.simpan');
-
     Route::get('login', 'login')->name('login');
     Route::post('login', 'loginAksi')->name('login.aksi');
-
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
 
@@ -49,5 +45,14 @@ Route::middleware('auth')->group(function () {
         Route::get('hapus/{id}', 'hapus')->name('kategori.hapus');
     });
 
-    Route::resource('user', UserController::class);
+    Route::controller(PembelianController::class)->prefix('pembelian')->group(function () {
+        Route::get('', 'index')->name('pembelian');
+        Route::post('tambah', 'store')->name('pembelian.simpan');
+    });
+
+    Route::controller(UserController::class)->prefix('user')->group(function () {
+        Route::get('', 'index')->name('user');
+        Route::get('tambah', 'tambah')->name('user.tambah');
+        Route::post('tambah', 'simpan')->name('user.simpan');
+    });
 });

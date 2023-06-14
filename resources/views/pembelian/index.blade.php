@@ -180,7 +180,7 @@
                                                         <!--begin::Body-->
                                                         <div class="card-body text-center">
                                                                 <!--begin::Food img-->
-                                                            <img src="{{ asset('dist/assets/media/product/'.$row->img) }}" class="rounded-3 mb-4 w-150px h-150px w-xxl-200px h-xxl-200px" alt="" />
+                                                            <img src="{{ $row->img_url }}" class="rounded-3 mb-4 w-150px h-150px w-xxl-200px h-xxl-200px" alt="" />
                                                             <!--end::Food img-->
                                                             <!--begin::Info-->
                                                             <div class="mb-2">
@@ -199,11 +199,7 @@
                                                             <div class="text-center">
                                                                 {{-- <form action="{{ route('pembelian.index',$row->id) }}" method="post">
                                                                     @csrf --}}
-                                                                    {{-- <input type="submit" class="btn btn-primary text-300 mt-3" value="Add to Cart"> --}}
-                                                                    <input type="hidden" name="id" value="{{ $row->id }}">
-                                                                    {{-- <button type="submit" class="btn btn-primary">Add To Cart</button> --}}
-                                                                    <button id="addtocart" class="btn btn-primary">Add To Cart</button>
-                                                                    {{-- <a href="{{ route('pembelian.index',$row->id) }}" class="btn btn-primary">Add To Cart</a> --}}
+                                                                    <button class="btn btn-primary btn-add-cart" data-id="{{ $row->id }}">Add To Cart</button>
                                                                 {{-- </form> --}}
                                                             </div>
                                                             <!--end::Body-->
@@ -1343,103 +1339,7 @@
                                             </thead>
                                             <!--end::Table head-->
                                             <!--begin::Table body-->
-                                            <tbody>
-                                                {{-- @foreach ($data as $a)
-                                                <tr data-kt-pos-element="item" data-kt-pos-item-price="33">
-                                                    <td class="pe-0">
-                                                        <div class="d-flex align-items-center">
-                                                            <img src="{{ asset('dist/assets/media/product/'.$a->img) }}" class="w-50px h-50px rounded-3 me-3" alt="" />
-                                                            <span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-6 me-1">{{ $a->name_product }}</span>
-                                                        </div>
-                                                    </td>
-                                                    <td class="pe-0">
-                                                        <!--begin::Dialer-->
-                                                        <div class="position-relative d-flex align-items-center" data-kt-dialer="true" data-kt-dialer-min="1" data-kt-dialer-max="10" data-kt-dialer-step="1" data-kt-dialer-decimals="0">
-                                                            <!--begin::Decrease control-->
-                                                            <button type="button" class="btn btn-icon btn-sm btn-light btn-icon-gray-400" data-kt-dialer-control="decrease">
-                                                                <i class="ki-duotone ki-minus fs-3x"></i>
-                                                            </button>
-                                                            <!--end::Decrease control-->
-                                                            <!--begin::Input control-->
-                                                            <input type="text" class="form-control border-0 text-center px-0 fs-3 fw-bold text-gray-800 w-30px" data-kt-dialer-control="input" placeholder="Amount" name="manageBudget" readonly="readonly" value="2" />
-                                                            <!--end::Input control-->
-                                                            <!--begin::Increase control-->
-                                                            <button type="button" class="btn btn-icon btn-sm btn-light btn-icon-gray-400" data-kt-dialer-control="increase">
-                                                                <i class="ki-duotone ki-plus fs-3x"></i>
-                                                            </button>
-                                                            <!--end::Increase control-->
-                                                        </div>
-                                                        <!--end::Dialer-->
-                                                    </td>
-                                                    <td class="text-end">
-                                                        <span class="fw-bold text-primary fs-2" data-kt-pos-element="item-total">$66.00</span>
-                                                    </td>
-                                                </tr>
-                                                @endforeach --}}
-                                                <div id="cart-items">
-
-                                                </div>
-                                                
-                                                <tr data-kt-pos-element="item" data-kt-pos-item-price="7.5">
-                                                    <td class="pe-0">
-                                                        <div class="d-flex align-items-center">
-                                                            <img src="assets/media/stock/food/img-9.jpg" class="w-50px h-50px rounded-3 me-3" alt="" />
-                                                            <span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-6 me-1">Soup of the Day</span>
-                                                        </div>
-                                                    </td>
-                                                    <td class="pe-0">
-                                                        <!--begin::Dialer-->
-                                                        <div class="position-relative d-flex align-items-center" data-kt-dialer="true" data-kt-dialer-min="1" data-kt-dialer-max="10" data-kt-dialer-step="1" data-kt-dialer-decimals="0">
-                                                            <!--begin::Decrease control-->
-                                                            <button type="button" class="btn btn-icon btn-sm btn-light btn-icon-gray-400" data-kt-dialer-control="decrease">
-                                                                <i class="ki-duotone ki-minus fs-3x"></i>
-                                                            </button>
-                                                            <!--end::Decrease control-->
-                                                            <!--begin::Input control-->
-                                                            <input type="text" class="form-control border-0 text-center px-0 fs-3 fw-bold text-gray-800 w-30px" data-kt-dialer-control="input" placeholder="Amount" name="manageBudget" readonly="readonly" value="1" />
-                                                            <!--end::Input control-->
-                                                            <!--begin::Increase control-->
-                                                            <button type="button" class="btn btn-icon btn-sm btn-light btn-icon-gray-400" data-kt-dialer-control="increase">
-                                                                <i class="ki-duotone ki-plus fs-3x"></i>
-                                                            </button>
-                                                            <!--end::Increase control-->
-                                                        </div>
-                                                        <!--end::Dialer-->
-                                                    </td>
-                                                    <td class="text-end">
-                                                        <span class="fw-bold text-primary fs-2" data-kt-pos-element="item-total">$7.50</span>
-                                                    </td>
-                                                </tr>
-                                                <tr data-kt-pos-element="item" data-kt-pos-item-price="13.5">
-                                                    <td class="pe-0">
-                                                        <div class="d-flex align-items-center">
-                                                            <img src="assets/media/stock/food/img-3.jpg" class="w-50px h-50px rounded-3 me-3" alt="" />
-                                                            <span class="fw-bold text-gray-800 cursor-pointer text-hover-primary fs-6 me-1">Pancakes</span>
-                                                        </div>
-                                                    </td>
-                                                    <td class="pe-0">
-                                                        <!--begin::Dialer-->
-                                                        <div class="position-relative d-flex align-items-center" data-kt-dialer="true" data-kt-dialer-min="1" data-kt-dialer-max="10" data-kt-dialer-step="1" data-kt-dialer-decimals="0">
-                                                            <!--begin::Decrease control-->
-                                                            <button type="button" class="btn btn-icon btn-sm btn-light btn-icon-gray-400" data-kt-dialer-control="decrease">
-                                                                <i class="ki-duotone ki-minus fs-3x"></i>
-                                                            </button>
-                                                            <!--end::Decrease control-->
-                                                            <!--begin::Input control-->
-                                                            <input type="text" class="form-control border-0 text-center px-0 fs-3 fw-bold text-gray-800 w-30px" data-kt-dialer-control="input" placeholder="Amount" name="manageBudget" readonly="readonly" value="2" />
-                                                            <!--end::Input control-->
-                                                            <!--begin::Increase control-->
-                                                            <button type="button" class="btn btn-icon btn-sm btn-light btn-icon-gray-400" data-kt-dialer-control="increase">
-                                                                <i class="ki-duotone ki-plus fs-3x"></i>
-                                                            </button>
-                                                            <!--end::Increase control-->
-                                                        </div>
-                                                        <!--end::Dialer-->
-                                                    </td>
-                                                    <td class="text-end">
-                                                        <span class="fw-bold text-primary fs-2" data-kt-pos-element="item-total">$27.00</span>
-                                                    </td>
-                                                </tr>
+                                            <tbody id="tableCartItems">
                                             </tbody>
                                             <!--end::Table body-->
                                         </table>
@@ -1461,10 +1361,16 @@
                                             {{-- <span class="d-block lh-1 mb-2" data-kt-pos-element="total">$100.50</span>
                                             <span class="d-block mb-2" data-kt-pos-element="discount">-$8.00</span>
                                             <span class="d-block mb-9" data-kt-pos-element="tax">$11.20</span> --}}
-                                            <span class="d-block fs-2qx lh-1" data-kt-pos-element="grant-total">$93.46</span>
+                                            <span class="d-block fs-2qx lh-1" id="cartTotalPrice" data-cart-total="0">Rp 0</span>
                                         </div>
                                         <!--end::Content-->
                                     </div>
+
+                                    <form method="POST" action="{{ route('pembelian.simpan') }}">
+                                        @csrf
+                                        <input type="hidden" name="pembelian" id="dataPembelian" value="" />
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                    </form>
                                     <!--end::Summary-->
                                 </div>
                                 <!--end: Card Body-->
@@ -1510,23 +1416,186 @@
     </div>
     <!--end:::Main-->
 
+    <template id="templateCart">
+        <tr data-product-index data-product-count>
+            <td class="pe-0">
+                <div class="d-flex align-items-center">
+                    <img src="" class="product-img w-50px h-50px rounded-3 me-3" alt="" />
+                    <span class="product-name fw-bold text-gray-800 cursor-pointer text-hover-primary fs-6 me-1"></span>
+                </div>
+            </td>
+            <td class="pe-0">
+                <!--begin::Dialer-->
+                <div class="position-relative d-flex align-items-center" data-kt-dialer="true" data-kt-dialer-min="1" data-kt-dialer-max="10" data-kt-dialer-step="1" data-kt-dialer-decimals="0">
+                    <!--begin::Decrease control-->
+                    <button type="button" class="btn btn-icon btn-sm btn-light btn-icon-gray-400 btn-product-min">
+                        <i class="ki-duotone ki-minus fs-3x"></i>
+                    </button>
+                    <!--end::Decrease control-->
+                    <!--begin::Input control-->
+                    <input type="text" class="form-control border-0 text-center px-0 fs-3 fw-bold text-gray-800 w-30px input-product-count" placeholder="Amount" name="manageBudget" readonly="readonly" value="1" />
+                    <!--end::Input control-->
+                    <!--begin::Increase control-->
+                    <button type="button" class="btn btn-icon btn-sm btn-light btn-icon-gray-400 btn-product-add">
+                        <i class="ki-duotone ki-plus fs-3x"></i>
+                    </button>
+                    <!--end::Increase control-->
+                </div>
+                <!--end::Dialer-->
+            </td>
+            <td class="text-end">
+                <span class="product-total-price fw-bold text-primary fs-2">0</span>
+            </td>
+            <td>
+                <button class="btn-product-delete btn btn-danger">Hapus</button>
+            </td>
+        </tr>
+    </template>
+
 @endsection
 <script>
+    let dataProduct = {{ Illuminate\Support\Js::from($product) }};
+    
     document.addEventListener('DOMContentLoaded', function() {
+        const inputResult = document.getElementById("dataPembelian");
+        const textCartTotalPrice = document.getElementById("cartTotalPrice");
+        const cartWrapper = document.getElementById("tableCartItems");
+
+        const updateResult = (totalPrice, payment, products) => {
+            const data = {
+                pembelian: {
+                    total_harga: totalPrice,
+                    metode_bayar: payment
+                },
+                products
+            };
+            inputResult.value = JSON.stringify(data);
+        };
+
+        const updateTextTotalPrice = () => {
+            let totalPrice = Number(textCartTotalPrice.dataset.cartTotal);
+            const products = [];
+
+            cartWrapper.querySelectorAll("tr").forEach(trElm => {
+                let productIndex = Number(trElm.dataset.productIndex);
+
+                const price = dataProduct[productIndex].price;
+                const count = Number(trElm.dataset.productCount);
+                const productTotalPrice = price * count;
+
+                totalPrice += productTotalPrice;
+
+                // products di updateResult()
+                products.push({
+                    id_product: dataProduct[productIndex].id,
+                    jumlah_item: count
+                });
+            });
+
+            textCartTotalPrice.innerText = "Rp " + totalPrice;
+
+            // updateResult
+            const payment = "Cash";
+            updateResult(totalPrice, payment, products);
+        };
+
+        const handlerCartMin = btn => {
+            const trElm = btn.closest("tr");
+            if(!trElm)
+                return;
+            let index = Number(trElm.dataset.productIndex);
+
+            const price = dataProduct[index].price;
+            let count = Number(trElm.dataset.productCount);
+            if(count <= 1)
+                return;
+            
+            count--;
+            trElm.dataset.productCount = count;
+            trElm.querySelector(".input-product-count").value = count;
+            trElm.querySelector(".product-total-price").innerText = `Rp ${ price * count }`;
+            updateTextTotalPrice();
+        };
+
+        const handlerCartAdd = btn => {
+            const trElm = btn.closest("tr");
+            if(!trElm)
+                return;
+            let index = trElm.dataset.productIndex;
+            if(index == "first")
+                index = 0;
+
+            const price = dataProduct[index].price;
+            let count = Number(trElm.dataset.productCount);
+            if(count == dataProduct[index].stock) {
+                const productName = dataProduct[index].name_product;
+                const productStock = dataProduct[index].stock;
+                alert(`Stock ${ productName } hanya tersedia sejumlah ${ productStock } item.`);
+                return;
+            }
+            
+            count++;
+            trElm.dataset.productCount = count;
+            trElm.querySelector(".input-product-count").value = count;
+            trElm.querySelector(".product-total-price").innerText = `Rp ${ price * count }`;
+            updateTextTotalPrice();
+        };
+
         // Temukan semua tombol "Add to Cart"
-        var addToCartButtons = document.querySelectorAll('#addtocart');
+        const btnAddCarts = document.querySelectorAll('.btn-add-cart');
 
         // Loop melalui setiap tombol dan tambahkan event listener
-        addToCartButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            // Ambil informasi produk dari atribut data
-            var name_product = this.dataset.name_product;
+        btnAddCarts.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                // Ambil id dari button
+                const productId = this.dataset.id;
 
-            // Tampilkan informasi produk
-            var cartItem = document.createElement('div');
-            cartItem.innerHTML = ' Name: ' +  name_product;
-            document.getElementById('cart-items').appendChild(cartItem);
-        });
+                // Cari data berdasarkan id
+                const index = dataProduct.findIndex(item => item.id == productId);
+                if(index < 0)
+                    return;
+                const currProduct = dataProduct[index];
+
+                // Tampilkan informasi produk
+                const templateCart = document.getElementById("templateCart");
+                const contentNode = templateCart.content.cloneNode(true);
+                
+                contentNode.querySelector("img.product-img").setAttribute("src", currProduct.img_url);
+                contentNode.querySelector(".product-name").innerText = currProduct.name_product;
+                contentNode.querySelector(".product-total-price").innerText = "Rp " + currProduct.price;
+
+                contentNode.querySelector("tr").dataset.productIndex = index;
+                contentNode.querySelector("tr").dataset.productCount = 1;
+
+                contentNode.querySelector(".btn-product-min").addEventListener("click", function() {
+                    handlerCartMin(this);
+                });
+
+                contentNode.querySelector(".btn-product-add").addEventListener("click", function() {
+                    handlerCartAdd(this);
+                });
+
+                contentNode.querySelector(".btn-product-delete").addEventListener("click", function() {
+                    const isConfirmed = confirm("Anda akan menghapus item dari cart. Lanjutkan?");
+                    if(!isConfirmed)
+                        return;
+
+                    const trElm = this.closest("tr");
+                    if(!trElm)
+                        return;
+                    trElm.querySelector(".btn-product-min").removeEventListener("click", function() {
+                        handlerCartMin(this);
+                    });
+                    trElm.querySelector(".btn-product-add").removeEventListener("click", function() {
+                        handlerCartAdd(this);
+                    });
+                    trElm.remove();
+                    updateTextTotalPrice();
+                });
+
+                cartWrapper.appendChild(contentNode);
+                updateTextTotalPrice();
+            });
         });
     });
 </script>

@@ -22,7 +22,7 @@
                 <!--end:Menu link-->
             </div>
             <!--end:Menu item-->
-            @if (auth()->user()->level == 'user')
+            @if (auth()->user()->level == 'kasir')
              <!--begin:Menu item-->
              <div class="menu-item here">
                 <!--begin:Menu link-->
@@ -35,7 +35,7 @@
                             <span class="path4"></span>
                         </i>
                     </span>
-                    <span class="menu-title"><a href="{{ route('user.index') }}">POS</a></span>
+                    <span class="menu-title"><a href="{{ route('pembelian') }}">POS</a></span>
                     {{-- <span class="menu-arrow"></span> --}}
                 </span>
                 <!--end:Menu link-->
@@ -460,7 +460,7 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="../../demo1/dist/apps/user-management/users/list.html">
+                                <a class="menu-link" href="{{ route('user') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>

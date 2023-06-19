@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+// use App\Models\Customers;
 use App\Models\Product;
 use App\Models\KategoriProduct;
 use App\Models\Pembelian;
@@ -14,7 +15,8 @@ class PembelianController extends Controller
     {
         $product = Product::all();
         $kategori = KategoriProduct::all();
-        return view('pembelian.index', compact('product', 'kategori'));
+        // $customer = Customers::where('name_customers')->get();
+        return view('pembelian.index', compact('product', 'kategori',));
     }
 
     public function store(Request $request)

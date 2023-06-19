@@ -11,7 +11,7 @@
 					<!--begin::Page title-->
 					<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
 						<!--begin::Title-->
-						<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Form Add Users</h1>
+						<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Form Edit Users</h1>
 						<!--end::Title-->
 					</div>
 					<!--end::Page title-->
@@ -24,7 +24,7 @@
 				<!--begin::Content container-->
 				<div id="kt_app_content_container" class="app-container container-xxl">
 					<!--begin::Form-->
-					<form class="form d-flex flex-column flex-lg-row" action="{{ route('user.simpan') }}" method="post">
+					<form class="form d-flex flex-column flex-lg-row" action="" method="post">
 						@csrf
 						<!--begin::Main column-->
 						<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -43,14 +43,14 @@
 														<label class="required form-label">Name</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="text" name="name" class="form-control mb-2" placeholder="name" value="{{ old('name') }}" required />
+														<input type="text" name="name" class="form-control mb-2" placeholder="name" value="{{ $user->name }}" required />
 														<!--end::Input-->
 
 														<!--begin::Label-->
 														<label class="required form-label mt-4">Email</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="email" name="email" class="form-control mb-2" placeholder="email" value="{{ old('email') }}" required />
+														<input type="email" name="email" class="form-control mb-2" placeholder="email" value="{{ $user->email }}" required />
 														<!--end::Input-->
 
 														<!--begin::Label-->
@@ -60,7 +60,7 @@
 																<!--begin::Input group-->
 																	<div class="mb-10 fv-row">
 																		<!--begin::Input-->
-																		<select class="form-select" name="level" data-kt-select2="true" data-placeholder="Select option"  data-allow-clear="true" required>
+																		<select class="form-select" name="level" data-kt-select2="true" data-placeholder="Select option"  data-allow-clear="true"   required>
 																			<option value="" selected disabled hidden>-- Pilih Level --</option>
 																			<option value="admin">Admin</option>
 																			<option value="kasir">Kasir</option>

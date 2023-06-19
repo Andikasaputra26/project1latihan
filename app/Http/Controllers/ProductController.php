@@ -53,6 +53,8 @@ class ProductController extends Controller
 
         // Simpan Data
         $product = new Product;
+        // $product->kode_product = $request['kode_product'] = 'P-' . \tambah_nol_didepan($product->id + 1, 6);
+        $product->kode_product = $request->kode_product;
         $product->name_product = $request->name_product;
         $product->description = $request->description;
         $product->stock = $request->stock;

@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout.app');
 @section('content')
     <!--begin::Main-->
 	<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -11,7 +11,7 @@
 					<!--begin::Page title-->
 					<div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
 						<!--begin::Title-->
-						<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Form Add Users</h1>
+						<h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Form Edit Customers</h1>
 						<!--end::Title-->
 					</div>
 					<!--end::Page title-->
@@ -24,7 +24,7 @@
 				<!--begin::Content container-->
 				<div id="kt_app_content_container" class="app-container container-xxl">
 					<!--begin::Form-->
-					<form class="form d-flex flex-column flex-lg-row" action="{{ route('user.simpan') }}" method="post">
+					<form class="form d-flex flex-column flex-lg-row" action="" method="post">
 						@csrf
 						<!--begin::Main column-->
 						<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
@@ -40,41 +40,31 @@
 													<!--begin::Input group-->
 													<div class="mb-10 fv-row">
 														<!--begin::Label-->
-														<label class="required form-label">Name</label>
+														<label class="required form-label">Name Customers</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="text" name="name" class="form-control mb-2" placeholder="name" value="{{ old('name') }}" required />
+														<input type="text" name="name_customers" class="form-control mb-2" placeholder="name customers" value="{{ $customer->name_customers }}" required />
 														<!--end::Input-->
 
 														<!--begin::Label-->
 														<label class="required form-label mt-4">Email</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="email" name="email" class="form-control mb-2" placeholder="email" value="{{ old('email') }}" required />
+														<input type="email" name="email" class="form-control mb-2" placeholder="email" value="{{ $customer->email }}" required />
 														<!--end::Input-->
 
-														<!--begin::Label-->
-														<label class="required form-label mt-4">Level Users</label>
-														<!--end::Label-->
-															<!--begin::Card body-->
-																<!--begin::Input group-->
-																	<div class="mb-10 fv-row">
-																		<!--begin::Input-->
-																		<select class="form-select" name="level" data-kt-select2="true" data-placeholder="Select option"  data-allow-clear="true" required>
-																			<option value="" selected disabled hidden>-- Pilih Level --</option>
-																			<option value="admin">Admin</option>
-																			<option value="kasir">Kasir</option>
-																		</select>
-																		<!--end::Input-->
-																	</div>
-																<!--end::Input group-->
-															<!--end::Card header-->
-														<!--End Kategori-->
-														<!--begin::Label-->
-														<label class="required form-label">Password</label>
+                                                        <!--begin::Label-->
+														<label class="required form-label mt-4">Telephone</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="password" name="password" class="form-control mb-2" placeholder="password" value="{{ old('password') }}" required/>
+														<input type="number" name="telephone" class="form-control mb-2" placeholder="telephone" value="{{ $customer->telephone }}" required />
+														<!--end::Input-->
+
+                                                        <!--begin::Label-->
+														<label class="required form-label mt-4">Addrress</label>
+														<!--end::Label-->
+														<!--begin::Input-->
+														<input type="text" name="address" class="form-control mb-2" placeholder="address" value="{{ $customer->address }}" required />
 														<!--end::Input-->
 													</div>
 													<!--end::Input group-->
@@ -90,7 +80,7 @@
 							<!--end::Tab content-->
 							<div class="d-flex justify-content-end">
 								<!--begin::Button-->
-								<a href="{{ route('user') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+								<a href="{{ route('customer') }}" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
 								<button type="submit" class="btn btn-primary">Simpan</button>								
 								<!--end::Button-->
 							</div>

@@ -16,4 +16,9 @@ class PembelianItem extends Model
     {
         return $this->hasOne(Product::class, 'id_product');
     }
+
+    // public function Customers(): HasOne
+    // {
+    //     return $this->hasOne(Customers::class, 'name_customers');
+    // }
 }

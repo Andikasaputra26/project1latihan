@@ -150,14 +150,6 @@
 						@csrf
 						<!--begin::Main column-->
 						<div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
-							<!--begin:::Tabs-->
-							<ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-semibold mb-n2">
-								<!--begin:::Tab item-->
-								<li class="nav-item">
-									<a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_ecommerce_add_product_general">General</a>
-								</li>
-							</ul>
-							<!--end:::Tabs-->
 							<!--begin::Tab content-->
 								<div class="tab-content">
 									<!--begin::Tab pane-->
@@ -165,13 +157,6 @@
 										<div class="d-flex flex-column gap-7 gap-lg-10">
 											<!--begin::General options-->
 											<div class="card card-flush py-4">
-												<!--begin::Card header-->
-												<div class="card-header">
-													<div class="card-title">
-														<h2>General</h2>
-													</div>
-												</div>
-												<!--end::Card header-->
 												<!--begin::Card body-->
 												
 												<div class="card-body pt-0">
@@ -202,47 +187,40 @@
 														<!--end::Description-->
 													</div>
 													<!--end::Input group-->
-												</div>
-												<!--end::Card header-->
-											</div>
-											<!--end::General options-->
-											<div class="card card-flush py-4">
-												<!--begin::Card header-->
-												<div class="card-header">
-													<div class="card-title">
-														<h2>Stock</h2>
+													<!--begin::Input group-->
+													<div class="mb-10 fv-row mt-12">
+														<!--begin::Label-->
+														<label class="required form-label">Stock</label>
+														<!--end::Label-->
+														<!--begin::Input-->
+														<input type="text" name="stock" class="form-control mb-2" placeholder="Stock" value="{{ old('stock') }}" />
+														<!--end::Input-->
 													</div>
-												</div>
-												<!--end::Card header-->
-												<!--begin::Card body-->
-												<div class="card-body pt-0">
+													<!--end::Input group-->
 													<!--begin::Input group-->
 													<div class="mb-10 fv-row">
 														<!--begin::Label-->
-														<label class="required form-label">Product Stock</label>
+														<label class="required form-label">Price</label>
 														<!--end::Label-->
 														<!--begin::Input-->
-														<input type="text" name="stock" class="form-control mb-2" placeholder="Product stock" value="{{ old('stock') }}" />
+														<input type="text" name="price" class="form-control mb-2" placeholder="Product stock" value="{{ old('price') }}" />
 														<!--end::Input-->
-														<!--begin::Description-->
-														<div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
-														<!--end::Description-->
+													</div>
+													<!--end::Input group-->
+
+													<!--begin::Input group-->
+													<div class="mb-10 fv-row">
+														<!--begin::Label-->
+														<label class="required form-label">Image</label>
+														<!--end::Label-->
+														<!--begin::Input-->
+														<input type="file" name="img" class="form-control mb-2" value="{{ old('img') }}" />
+														<!--end::Input-->
 													</div>
 													<!--end::Input group-->
 												</div>
 												<!--end::Card header-->
-											</div>
 
-											<!-- Start Kategori-->
-											<div class="card card-flush py-4">
-												<!--begin::Card header-->
-												<div class="card-header">
-													<div class="card-title">
-														<h2>Category Product</h2>
-													</div>
-												</div>
-												<!--end::Card header-->
-												<!--begin::Card body-->
 												<div class="card-body pt-0">
 													<!--begin::Input group-->
 													<div class="mb-10 fv-row">
@@ -257,109 +235,12 @@
 															@endforeach
 														</select>
 														<!--end::Input-->
-														<!--begin::Description-->
-														<div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
-														<!--end::Description-->
 													</div>
 													<!--end::Input group-->
 												</div>
 												<!--end::Card header-->
 											</div>
-											<!--End Kategori-->
-
-											<!--begin::Pricing-->
-											<div class="card card-flush py-4">
-												<!--begin::Card header-->
-												<div class="card-header">
-													<div class="card-title">
-														<h2>Price</h2>
-													</div>
-												</div>
-												<!--end::Card header-->
-												<!--begin::Card body-->
-												<div class="card-body pt-0">
-													<!--begin::Input group-->
-													<div class="mb-10 fv-row">
-														<!--begin::Label-->
-														<label class="required form-label">Base Price</label>
-														<!--end::Label-->
-														<!--begin::Input-->
-														<input type="text" name="price" class="form-control mb-2" placeholder="Product stock" value="{{ old('stock') }}" />
-														<!--end::Input-->
-														<!--begin::Description-->
-														<div class="text-muted fs-7">Set the product Price.</div>
-														<!--end::Description-->
-													</div>
-													<!--end::Input group-->
-													<!--begin::Input group-->
-													
-													<!--end::Input group-->
-													<!--begin::Input group-->
-													<div class="d-none mb-10 fv-row" id="kt_ecommerce_add_product_discount_percentage">
-														<!--begin::Label-->
-														<label class="form-label">Set Discount Percentage</label>
-														<!--end::Label-->
-														<!--begin::Slider-->
-														<div class="d-flex flex-column text-center mb-5">
-															<div class="d-flex align-items-start justify-content-center mb-7">
-																<span class="fw-bold fs-3x" id="kt_ecommerce_add_product_discount_label">0</span>
-																<span class="fw-bold fs-4 mt-1 ms-2">%</span>
-															</div>
-															<div id="kt_ecommerce_add_product_discount_slider" class="noUi-sm"></div>
-														</div>
-														<!--end::Slider-->
-														<!--begin::Description-->
-														<div class="text-muted fs-7">Set a percentage discount to be applied on this product.</div>
-														<!--end::Description-->
-													</div>
-													<!--end::Input group-->
-													<!--begin::Input group-->
-													<div class="d-none mb-10 fv-row" id="kt_ecommerce_add_product_discount_fixed">
-														<!--begin::Label-->
-														<label class="form-label">Fixed Discounted Price</label>
-														<!--end::Label-->
-														<!--begin::Input-->
-														<input type="text" name="dicsounted_price" class="form-control mb-2" placeholder="Discounted price"/>
-														<!--end::Input-->
-														<!--begin::Description-->
-														<div class="text-muted fs-7">Set the discounted product price. The product will be reduced at the determined fixed price</div>
-														<!--end::Description-->
-													</div>
-													<!--end::Input group-->
-													{{-- <!--begin::Tax-->
-													
-													<!--end:Tax--> --}}
-												</div>
-												<!--end::Card header-->
-											</div>
-											<!--end::Pricing-->
-
-											<div class="card card-flush py-4">
-												<!--begin::Card header-->
-												<div class="card-header">
-													<div class="card-title">
-														<h2>Upload Image</h2>
-													</div>
-												</div>
-												<!--end::Card header-->
-												<!--begin::Card body-->
-												<div class="card-body pt-0">
-													<!--begin::Input group-->
-													<div class="mb-10 fv-row">
-														<!--begin::Label-->
-														<label class="required form-label">Product Image</label>
-														<!--end::Label-->
-														<!--begin::Input-->
-														<input type="file" name="img" class="form-control mb-2" placeholder="Product Image" value="{{ old('img') }}" />
-														<!--end::Input-->
-														<!--begin::Description-->
-														<div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
-														<!--end::Description-->
-													</div>
-													<!--end::Input group-->
-												</div>
-												<!--end::Card header-->
-											</div>
+											<!--end::General options-->
 										</div>
 									</div>
 									<!--end::Tab pane-->

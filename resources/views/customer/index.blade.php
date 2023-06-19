@@ -1,10 +1,10 @@
-@extends('layout.app')
+@extends('layout.app');
 @section('css')
 <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> 
 @endsection
 @section('content')
-    <!--begin::Main-->
-    <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+     <!--begin::Main-->
+     <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
         <!--begin::Content wrapper-->
         <div class="d-flex flex-column flex-column-fluid">
             <!--begin::Toolbar-->
@@ -14,7 +14,7 @@
                     <!--begin::Page title-->
                     <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                         <!--begin::Title-->
-                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Users List</h1>
+                        <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">Customer List</h1>
                         <!--end::Title-->
                         <!--begin::Breadcrumb-->
                         <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
@@ -29,16 +29,9 @@
                             </li>
                             <!--end::Item-->
                             <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">User Management</li>
+                            <li class="breadcrumb-item text-muted">Customer </li>
                             <!--end::Item-->
-                            <!--begin::Item-->
-                            <li class="breadcrumb-item">
-                                <span class="bullet bg-gray-400 w-5px h-2px"></span>
-                            </li>
-                            <!--end::Item-->
-                            <!--begin::Item-->
-                            <li class="breadcrumb-item text-muted">Users</li>
-                            <!--end::Item-->
+                            
                         </ul>
                         <!--end::Breadcrumb-->
                     </div>
@@ -48,7 +41,7 @@
                         <!--begin::Secondary button-->
                         <!--end::Secondary button-->
                         <!--begin::Primary button-->
-                        <a href="{{ route('user.tambah') }}" class="btn btn-sm fw-bold btn-primary">Add Users</a>
+                        <a href="{{ route('customer.tambah') }}" class="btn btn-sm fw-bold btn-primary">Add Customers</a>
                         <!--end::Primary button-->
                     </div>
                     <!--end::Actions-->
@@ -72,7 +65,7 @@
                                         <span class="path1"></span>
                                         <span class="path2"></span>
                                     </i>
-                                    <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search user" />
+                                    <input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Customer" />
                                 </div>
                                 <!--end::Search-->
                             </div>
@@ -82,45 +75,46 @@
                         <!--begin::Card body-->
                         <div class="card-body py-4">
                             <!--begin::Table-->
-                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="DataUser">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5" id="DataCustomer">
                                 <thead>
                                     <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0">
-                                        <th class="min-w-125px">Name</th>
-                                        <th class="min-w-125px">Level Account</th>
-                                        <th class="text-end min-w-100px">Actions</th>
+                                        <th class="min-w-125px">Name Customers</th>
+                                        <th class="min-w-125px">Email</th>
+                                        <th class="min-w-125px">Telephone</th>
+                                        <th class="min-w-125px">Address</th>
+                                        <th class="min-w-125px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody class="text-gray-600 fw-semibold">
-                                    @foreach ($account as $user)
-                                        <tr>
-                                            <td class="d-flex align-items-center">
-                                                <!--begin::User details-->
-                                                <div class="d-flex flex-column">
-                                                    <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $user->name }}</a>
-                                                    <span>{{ $user->email }}</span>
+                                    @foreach ($customer as $cus)
+                                    <tr>
+                                        <td>
+                                            <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $cus->name_customers }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="text-gray-600 text-hover-primary mb-1">{{ $cus->email }}</a>
+                                        </td>
+                                        <td>{{ $cus->telephone }}</td>
+                                        <td data-filter="mastercard">{{ $cus->address }}</td>
+                                        <td class="text">
+                                            <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
+                                            <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
+                                            <!--begin::Menu-->
+                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="{{ route('customer.edit',$cus->id) }}" class="menu-link px-3">Edit</a>
                                                 </div>
-                                                <!--begin::User details-->
-                                            </td>
-                                            <td>{{ $user->level }}</td>
-                                            <td class="text-end">
-                                                <a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                                <!--begin::Menu-->
-                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="{{ route('user.edit',$user->id) }}" class="menu-link px-3">Edit</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="{{ route('user.hapus',$user->id) }}" class="menu-link px-3" data-kt-users-table-filter="delete_row">Delete</a>
-                                                    </div>
-                                                    <!--end::Menu item-->
+                                                <!--end::Menu item-->
+                                                <!--begin::Menu item-->
+                                                <div class="menu-item px-3">
+                                                    <a href="#" class="menu-link px-3" data-kt-customer-table-filter="delete_row">Delete</a>
                                                 </div>
-                                                <!--end::Menu-->
-                                            </td>
-                                        </tr>
+                                                <!--end::Menu item-->
+                                            </div>
+                                            <!--end::Menu-->
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -165,7 +159,6 @@
     </div>
     <!--end:::Main-->
 @endsection
-
 @section('js')
     <!-- Page level plugins -->
     <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
@@ -173,8 +166,7 @@
     <script src="{{ asset('js/sweetalert.js') }}"></script>
     <script>
         $(document).ready(function(){
-            $('#DataUser').DataTable();
-            
+            $('#DataCustomer').DataTable();
         })
     </script>
 @endsection

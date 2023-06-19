@@ -170,6 +170,7 @@
 											<table class="table align-middle table-row-dashed fs-6 gy-5" id="DataTable">
 												<thead>
 													<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+														<th class="text-center min-w-100px">Kode Product</th>
 														<th class="min-w-200px">Product</th>
 														<th class="text-end min-w-100px">Description</th>
 														<th class="text-end min-w-70px">Category</th>
@@ -181,6 +182,9 @@
 												<tbody class="fw-semibold text-gray-600">
 													@foreach ($product as $row)
 														<tr>
+															<td class="text-center pe-0">
+																<span class="fw-bold" style="background-color: aquamarine; color:black;"> {{ $row->kode_product }} </span>
+															</td>
 															<td>
 																<div class="d-flex align-items-center">
 																	<!--begin::Thumbnail-->
@@ -196,7 +200,6 @@
 																</div>
 															</td>
 															<td class="text-end pe-0">
-																{{-- <span class="fw-bold">{{ $row->description }}</span> --}}
 																<span class="fw-bold">{{ strip_tags($row->description) }}</span>
 															</td>
 
@@ -207,7 +210,7 @@
 															<td class="text-end pe-0">
 																<span class="fw-bold ms-3">{{ $row->stock }}</span>
 															</td>
-															<td class="text-end pe-0">Rp. {{ $row->price }}</td>
+															<td class="text-end pe-0"> {{ $row->price }}</td>
 															
 															<td class="text-end">
 																<a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions

@@ -24,7 +24,7 @@ class KategoriController extends Controller
         return redirect()->route('kategori');
     }
 
-    public function edit($id, Request $request)
+    public function edit($id)
     {
         $kategori = KategoriProduct::find($id)->first();
         return view('kategori.form', ['kategori' => $kategori]);

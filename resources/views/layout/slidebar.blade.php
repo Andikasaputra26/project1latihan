@@ -5,6 +5,7 @@
         <!--begin::Menu-->
         <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
             <!--begin:Menu item-->
+            @if (auth()->user()->level == 'admin')
             <div class="menu-item here">
                 <!--begin:Menu link-->
                 <span class="menu-link">
@@ -21,6 +22,7 @@
                 </span>
                 <!--end:Menu link-->
             </div>
+            @endif
             <!--end:Menu item-->
             @if (auth()->user()->level == 'kasir')
              <!--begin:Menu item-->
@@ -469,18 +471,6 @@
                                 <!--end:Menu link-->
                             </div>
                             <!--end:Menu item-->
-                            <!--begin:Menu item-->
-                            <div class="menu-item">
-                                <!--begin:Menu link-->
-                                <a class="menu-link" href="../../demo1/dist/apps/user-management/users/view.html">
-                                    <span class="menu-bullet">
-                                        <span class="bullet bullet-dot"></span>
-                                    </span>
-                                    <span class="menu-title">View User</span>
-                                </a>
-                                <!--end:Menu link-->
-                            </div>
-                            <!--end:Menu item-->
                         </div>
                         <!--end:Menu sub-->
                     </div>
@@ -561,35 +551,11 @@
                     <!--begin:Menu item-->
                     <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/apps/customers/getting-started.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Getting Started</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/apps/customers/list.html">
+                        <a class="menu-link" href="{{ route('customer') }}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
                             <span class="menu-title">Customer Listing</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="../../demo1/dist/apps/customers/view.html">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Customer Details</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
